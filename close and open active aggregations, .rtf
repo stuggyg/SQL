@@ -1,0 +1,208 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Italic;\f1\froman\fcharset0 Times-Roman;\f2\froman\fcharset0 Times-Bold;
+\f3\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\i\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Users should be able to mark a container (aggregation) as "closed" so nothing more can be added, and reopen it if needed. You can't close a parent container until every container inside it is already closed. And the moment a container is closed, it gets deleted.
+\f1\i0 \
+Now the M-Files assessment:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f2\b \cf0 Open / close an active aggregation
+\f1\b0  \'97 
+\f2\b Yes, with configuration.
+\f1\b0  You model the container as an object type (Project, Case, File, etc.) and use 
+\f2\b workflow states
+\f1\b0  \'97 an "Active/Open" state and a "Closed" state. Users move it between them. Standard M-Files capability.\
+
+\f2\b Can't close a parent until all children are closed
+\f1\b0  \'97 
+\f2\b Yes, but it needs custom logic.
+\f1\b0  This isn't out-of-the-box. You enforce it with a 
+\f2\b workflow state condition or a compliance/validation script
+\f1\b0  that checks every child object's state before allowing the transition to "Closed." Doable and reliable, but it's a configured control, not a checkbox.\
+
+\f2\b Closed aggregations are immediately destroyed
+\f1\b0  \'97 
+\f3 \uc0\u9888 \u65039 
+\f1  
+\f2\b Technically yes, but stop and check this one.
+\f1\b0  M-Files 
+\f0\i can
+\f1\i0  trigger deletion on entering a state (via workflow action/script), so the capability exists. But the requirement as written is almost certainly wrong or garbled. In records management, 
+\f0\i closing
+\f1\i0  and 
+\f0\i destroying
+\f1\i0  are completely separate lifecycle events \'97 you close a container, it sits under a retention period, and it's destroyed later per a disposal schedule. "Close = instant destruction" would mean records are wiped the second they're finalised, which defeats the entire point of a records system and would likely breach retention obligations.\
+My strong suggestion: flag that third clause back to whoever wrote the sheet. It reads like two separate MoReq2010 requirements (closing aggregations, and destroying aggregations that have reached end-of-retention) got merged into one sentence. Answering a flat "yes" against it risks committing to behaviour nobody actually wants.\
+So a fair way to record it: first two parts 
+\f2\b Yes (with configuration)
+\f1\b0 ; third part 
+\f2\b needs clarification \'97 likely a wording error
+\f1\b0 .\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Here's the mapping \'97 with one important trap flagged, because M-Files reuses one of these words to mean something different.\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+
+\f2\b \cf0 \strokec2 MoReq2010\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 What it means\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 M-Files construct\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Entity
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The base abstraction \'97 
+\f0\i everything
+\f1\i0  is an entity (records, aggregations, users, roles, classes all are). Each has a system ID + metadata.\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The 
+\f2\b object
+\f1\b0  (any object type) plus its 
+\f2\b metadata card
+\f1\b0 . M-Files' "everything is an object with metadata" mirrors this closely.\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Record
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 A fixed, declared record \'97 content that mustn't change.\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 A 
+\f2\b document object
+\f1\b0  in a locked/final 
+\f2\b workflow state
+\f1\b0  (or a specific declared version). M-Files has no native "record" type, so you model it with class + workflow state.\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Aggregation
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 A hierarchical grouping of records/other aggregations (the "file/folder" concept, abstracted).\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Not a physical thing in M-Files.
+\f1\b0  Closest is a 
+\f2\b container object type
+\f1\b0  (e.g. a 
+\f0\i Project
+\f1\i0 , 
+\f0\i Case
+\f1\i0 , 
+\f0\i Matter
+\f1\i0  object) that documents relate to. Views are dynamic, so aggregation = a relationship/object, not a folder.\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Component
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The actual content bytes/renditions of a record \'97 a record can have several (e.g. email + attachments).\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The 
+\f2\b file(s)
+\f1\b0  attached to a document object. M-Files multi-file documents map directly here.\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Class
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3 \cf0 \uc0\u9888 \u65039 
+\f1  Part of the 
+\f2\b classification scheme
+\f1\b0  \'97 carries 
+\f2\b retention & disposal rules
+\f1\b0 . Records get assigned to a class for lifecycle purposes.\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 This is 
+\f2\b NOT
+\f1\b0  M-Files' "Class." In M-Files, 
+\f0\i Class
+\f1\i0  means object-type sub-typing (Contract, Invoice\'85). MoReq's Class \uc0\u8776  M-Files 
+\f2\b workflow + retention/disposal logic + a value-list value
+\f1\b0 , not the M-Files Class field.\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1262\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth5525\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth8612\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\b \cf0 Service
+\f1\b0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The functional modules (Entity, Classification, Disposal Scheduling, Disposal Holding, Role, Search, Export\'85) that reference each other.\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 M-Files 
+\f2\b features/subsystems
+\f1\b0 : permissions (NACLs), workflows, value lists, vault structure, retention policies, search, export. No 1:1 module boundary.\cell \lastrow\row
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 The one that will bite you on a vendor requirements sheet is 
+\f2\b Class
+\f1\b0 . When MoReq2010 (or a records-manager writing to it) says "class," they almost always mean 
+\f0\i the retention/disposal classification
+\f1\i0 , not M-Files object classes. So a requirement like "records inherit disposal rules from their class" maps to 
+\f2\b M-Files workflows + retention policies
+\f1\b0 , and answering it against the M-Files 
+\f0\i Class
+\f1\i0  field would be wrong.\
+Two more worth calling out for your yes/no assessment:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f2\b \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Aggregation
+\f1\b0  is the biggest conceptual gap. M-Files is metadata/relationship-driven, not folder-driven, so "open/close an aggregation," "child aggregations," and "destroy a closed aggregation" all have to be modelled with 
+\f2\b container objects + workflow states + relationships
+\f1\b0 , not literal folders. It's 
+\f0\i doable
+\f1\i0  but it's a design decision, not an out-of-the-box control \'97 worth phrasing carefully rather than a flat "yes."\
+\ls1\ilvl0
+\f2\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Record
+\f1\b0  as an immutable declared entity relies on M-Files 
+\f2\b workflow state locking + version history
+\f1\b0 ; M-Files doesn't have a formal "declare as record" button unless you're on a records-management configuration or add-on.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 Want me to take the specific requirements from your sheet and slot each one against the right M-Files construct using this mapping? That's usually where the yes/no answers get sharper.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \
+}
