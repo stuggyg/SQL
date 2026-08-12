@@ -1,0 +1,34 @@
+Here are ten questions pitched for a vendor conversation or internal M-Files review — technical enough to expose real capability, but worded the way a business stakeholder would ask them.
+
+Workflows
+
+How does state-based workflow handle automatic transitions — can we trigger a state change from a metadata condition (e.g. a review date passing) rather than relying on a person to click, and what happens if the condition is met while the object is checked out?
+When a workflow drives our retention lifecycle — opening, closing, and eventually destroying a records aggregation — can the workflow itself enforce that a closed aggregation can't be reopened or edited, or is that governed separately by permissions?
+
+PII
+
+How does M-Files identify and classify documents containing PII — is it native metadata-driven classification, the Discovery/intelligence add-on, or does it need a third-party classifier, and how does that work with our 26.2 build?
+Once a document is flagged as containing PII, what can the platform do automatically — restrict permissions, apply retention, redact, or route to a workflow — versus what needs a manual step?
+
+Duplicates
+
+How does M-Files prevent duplicates at the point of capture — does it detect a duplicate on content (hashing the file) or only on matching metadata, and can it block the save or just warn the user?
+For duplicates already sitting in the vault, what's the supported way to find and merge or remove them without breaking existing references, version history, or workflow state?
+
+Exports
+
+When we export documents out of M-Files, what comes with them — do we get the metadata and audit trail alongside the file, and in what format (native, PDF, structured XML/CSV for the metadata)?
+Is there a supported bulk or scheduled export for records that have reached end-of-retention, and does that export preserve enough evidence to prove chain of custody for a disposition?
+
+Audits
+
+What does the audit trail actually capture out of the box — reads/views as well as edits, permission changes, workflow transitions, and deletions — and how far back is it retained by default?
+Can we report on and export the audit history for a specific document or aggregation for a compliance or legal request, and can that be locked down so the audit log itself can't be altered or purged by an administrator?
+
+
+
+Here are three, same technical-but-approachable framing:
+
+What are the recommended CPU, RAM, and disk specs for our expected size — and how do those scale? If we're at, say, 500 users and a few hundred GB of documents today but expect to double, at what point do we outgrow a single server and need to split the M-Files Server, the SQL Server database, and full-text search onto separate machines?
+How should the underlying storage be configured for performance? Specifically, what IOPS and disk latency does M-Files expect for the SQL database, the file vault data, and the search index — and are there VM-level settings (thin vs. thick provisioning, memory ballooning, CPU over-commit on the host) that you've seen quietly kill performance in virtualised deployments?
+How do we validate that performance is actually healthy, and what does a slow day look like? What are the key metrics we should be monitoring — check-in/check-out times, search response, workflow processing lag — and does M-Files provide tooling to baseline and alert on these, or do we need to build that monitoring ourselves?
